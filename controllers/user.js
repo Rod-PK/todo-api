@@ -9,3 +9,7 @@ export const userLogin = (req, res, next) => {
 export const userLogout = (req, res, next) => {
     res.json("User Logged out!");
 }
+
+export const updateProfile = (req, res, next) => {
+    res.json("User profile updated");
+}
