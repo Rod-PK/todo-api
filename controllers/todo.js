@@ -22,14 +22,27 @@ export const addTodo = async (req, res, next) => {
 
 export const getTodos = async (req, res, next) => {
     try {
-        const { filter = "{}", limit= 10, skip = 0 } = req.query;
+        const { filter = "{}", sort = "{}", limit = 10, skip = 0 } = req.query;
         // Fetch todos from databse
         const todos = await TodoModel
-        .find(JSON.parse(filter))
-        .limit(limit)
-        .skip(skip);
+            .find(JSON.parse(filter))
+            .sort(JSON.parse(sort))
+            .limit(limit)
+            .skip(skip);
         // Return response
         res.status(200).json(todos);
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const getTodo = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        // Get todo by id from database
+        const todo = await TodoModel.findById(id);
+        // Respond to request 
+        res.json(todo);
     } catch (error) {
         next(error);
     }

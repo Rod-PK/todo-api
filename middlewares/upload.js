@@ -11,7 +11,7 @@ export const remoteUpload = multer({
     preservePath: true
 });
 
-// Duolicate the above
+// Duplicate the above
 export const userAvatarUpload = multer({
     storage: multerSaveFilesOrg({
         apiAccessToken: process.env.SAVEFILESORG_API_KEY,
